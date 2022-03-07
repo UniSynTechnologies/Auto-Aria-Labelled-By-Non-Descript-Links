@@ -13,7 +13,7 @@ jQuery(function() {
         jQuery(link).parents("*").each(function(parentElementIndex, parentElement) {
           let childHeader = NONDESCRIPTLINKSWPJS.checkForChildHeader(parentElement);
           if (childHeader !== null) {
-            NONDESCRIPTLINKSWPJS.addAriaLabel(link, childHeader);
+            NONDESCRIPTLINKSWPJS.addAriaLabel(link, childHeader, linkIndex);
             return false; // stop loop
           }
         });
@@ -37,15 +37,21 @@ var NONDESCRIPTLINKSWPJS = {
     return header;
   },
 
-  addAriaLabel: function (link, header) {
-    let headerID = 'custom-descript-header-' + Date.now();
-    if ( jQuery(header).hasAttr('id') ) {
-      headerID = jQuery(header).hasAttr('id');
+  addAriaLabel: function (link, header, linkIndex) {
+    let headerID = 'custom-descript-header-' + Date.now() + linkIndex;
+    if ( jQuery(header).attr('id') ) {
+      headerID = jQuery(header).attr('id');
     }
-    let linkID = 'custom-nondescript-link-' + Date.now();
-    if ( jQuery(link).hasAttr('id') ) {
-      linkID = jQuery(link).hasAttr('id');
+	else {
+		jQuery(header).attr('id', headerID); // didn't have an id so add one
+	}
+    let linkID = 'custom-nondescript-link-' + Date.now() + linkIndex;
+    if ( jQuery(link).attr('id') ) {
+      linkID = jQuery(link).attr('id');
     }
+	else {
+		jQuery(link).attr('id', linkID); // didn't have an id so add one
+	}
     jQuery(link).attr('aria-labelledby', linkID + ' ' + headerID);
   },
 }
