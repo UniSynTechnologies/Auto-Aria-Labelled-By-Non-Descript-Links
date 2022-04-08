@@ -23,11 +23,11 @@ jQuery(function() {
 });
 
 
-var NONDESCRIPTLINKSWPJS = {
+const NONDESCRIPTLINKSWPJS = {
   checkForChildHeader: function (element) {
     let header = null;
 
-    jQuery(element).find('h1, h2, h3, h4, h5, h6').each(function(childHeaderIndex, childHeader) {
+    jQuery(element).find('h1, h2, h3, h4, h5, h6').each( (childHeaderIndex, childHeader) => {
       if (jQuery(childHeader).text().trim() !== '') {
         header = childHeader;
         return false; // stop loop
@@ -42,16 +42,16 @@ var NONDESCRIPTLINKSWPJS = {
     if ( jQuery(header).attr('id') ) {
       headerID = jQuery(header).attr('id');
     }
-	else {
-		jQuery(header).attr('id', headerID); // didn't have an id so add one
-	}
+    else {
+      jQuery(header).attr('id', headerID); // didn't have an id so add one
+    }
     let linkID = 'custom-nondescript-link-' + Date.now() + linkIndex;
     if ( jQuery(link).attr('id') ) {
       linkID = jQuery(link).attr('id');
     }
-	else {
-		jQuery(link).attr('id', linkID); // didn't have an id so add one
-	}
+    else {
+      jQuery(link).attr('id', linkID); // didn't have an id so add one
+    }
     jQuery(link).attr('aria-labelledby', linkID + ' ' + headerID);
   },
 }
