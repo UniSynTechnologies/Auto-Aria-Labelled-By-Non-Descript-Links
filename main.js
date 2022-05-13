@@ -1,7 +1,8 @@
 jQuery(function() {
   let nonDescriptText = [
     'read more',
-    'learn more'
+    'learn more',
+    'click here to learn more',
   ];
 
   jQuery('a').each(function(linkIndex, link) {
